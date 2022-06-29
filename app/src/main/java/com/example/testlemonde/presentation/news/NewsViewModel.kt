@@ -16,7 +16,7 @@ class NewsViewModel : ViewModel() {
 
     private val _newsState : MutableLiveData<NewsState> = MutableLiveData()
     val newsState : LiveData<NewsState>
-    get() = _newsState
+        get() = _newsState
 
     init {
         _newsState.postValue(NewsLoading)

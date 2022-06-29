@@ -19,19 +19,13 @@ class NewsDataSource {
         .build()
 
     val newsApi = Retrofit.Builder()
-        .baseUrl("https://aec.lemonde.fr/")
+        .baseUrl("https://aec.lemonde.fr")
         .client(okhttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(NewsApi::class.java)
 
     suspend fun getNews() : NewsDomainState {
-        delay(2000)
-        return NewsDomainSuccess(listOf<News>(
-            News("News 1"),
-            News("News 2")
-        ))
-
         return try {
             val response = newsApi.getNews()
             return if(response.isSuccessful ){
